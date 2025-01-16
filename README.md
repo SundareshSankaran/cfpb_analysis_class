@@ -2,7 +2,7 @@
 
 This repository provides a Python class and associated methods to facilitate analysis of data from the publicly available CFPB Consumer Complaint database.  
 
-
+<mark>  This repo is still work in progress. <mark>
 
 ## Installation
 1. Clone this repository
