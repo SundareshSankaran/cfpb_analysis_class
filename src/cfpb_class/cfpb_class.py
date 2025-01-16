@@ -47,6 +47,10 @@ class CFPB:
         """This function converts data to a pandas dataframe"""
         import pandas as pd
         return pd.DataFrame(data)       
+    
+    def cluster(self):
+        """This function clusters data based on the parameters passed"""
+        pass
      
     def load(self, start_date=None, end_date=None, has_narrative=None):
         """This function loads data based on the parameters passed"""
