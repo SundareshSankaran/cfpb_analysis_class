@@ -1,6 +1,6 @@
 class CFPB:
     """This class helps you initialise perform operations on a Python class object called CFPB"""
-    def __init__(self, base_url = None, name=None, creationTimeStamp=None,  modifiedTimeStamp=None, createdBy=None, modifiedBy=None, start_date=None, end_date=None, has_narrative=None, dataframes=[]) -> None:
+    def __init__(self, base_url = None, name=None, creationTimeStamp=None,  modifiedTimeStamp=None, createdBy=None, modifiedBy=None, start_date=None, end_date=None, has_narrative=None, dataframes=[], profiles=[]) -> None:
         
         import datetime
 
@@ -15,6 +15,7 @@ class CFPB:
         self.end_date = datetime.datetime.now()
         self.has_narrative = None
         self.dataframes = []
+        self.profiles = []
 
         # Assign attributes based on what's passed
 
@@ -28,6 +29,7 @@ class CFPB:
         self.end_date = datetime.datetime.now() if end_date else self.end_date
         self.has_narrative = has_narrative if has_narrative else self.has_narrative
         self.dataframes = dataframes if dataframes else self.dataframes
+        self.profiles = profiles if profiles else self.profiles
 
     def create_request_url(self,base_url, start_date, end_date, has_narrative):
         """This function creates a request URL based on the parameters passed"""
@@ -67,3 +69,13 @@ class CFPB:
             print(f"Data frame of {len(data)} rows and {len(dataframe.columns)} columns loaded")
         else:
             print(data)
+
+    def describe(self, dataframe_indicator=0):
+        """This function returns a dataframe profile"""
+        profile = self.dataframes[dataframe_indicator].describe().T
+        profile["column_name"]=profile.index
+        profile["id"]=list(range(0,len(profile.index)))
+        profile.set_index("id", inplace=True)
+        print(profile)
+        self.profiles[dataframe_indicator]=profile
+        pass

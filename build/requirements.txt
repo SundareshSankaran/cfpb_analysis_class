@@ -2,3 +2,4 @@ requests
 jupyter
 ipykernel
 pandas
+ydata-profiling
